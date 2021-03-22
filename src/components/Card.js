@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Card from "@material-ui/core/Card";
 
+
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
     },
 });
 
-export function OneCard() {
+export function OneCard({popular}) {
 
     const classes = useStyles();
 
@@ -25,12 +26,12 @@ export function OneCard() {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image="https://source.unsplash.com/random"
-                    title="Contemplative Reptile"
+                    image={`https://image.tmdb.org/t/p/w500${popular.poster_path}`}
+                    title={popular.title}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Lizard
+                        {popular.title}
                     </Typography>
                 </CardContent>
             </CardActionArea>
