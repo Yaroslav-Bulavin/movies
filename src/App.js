@@ -1,30 +1,26 @@
 import React from "react";
-import { Header } from "./components/Header";
 import "./index.css"
-import {Intro} from "./components/Intro";
-import {Cards} from "./components/Cards";
-import {Footer} from "./components/Footer";
-import {Login} from "./components/Login";
-import {Search} from "./components/Search";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {Main} from "./components/Main";
+import {MoviePage} from "./components/MoviePage";
 
 
 function App() {
 
-  const [open, setOpen] = React.useState(false);
-
   return (
       <>
-        <Header changeStateOpen={() => setOpen(true)}/>
+        <Router>
+          <Switch>
 
-        <Intro/>
+              <Route path="/about">
+                  <h1>hello</h1>
+              </Route>
+              <Route path="/movie/:id" component={MoviePage}/>
 
-        <Search/>
+              <Route path="/" component={Main}/>
 
-        <Cards/>
-
-        <Login open={open} changeStateOpen={() => setOpen(false)}/>
-
-        <Footer/>
+          </Switch>
+        </Router>
       </>
   );
 }

@@ -20,10 +20,13 @@ const useStyles = makeStyles({
 export function OneCard({popular}) {
 
     const classes = useStyles();
+    // const handleFilmClick = async (id) => {
+    //
+    // };
 
     return (
         <Card className={classes.root}>
-            <CardActionArea>
+            <CardActionArea href={`movie/${popular.id}`}>
                 <CardMedia
                     className={classes.media}
                     image={`https://image.tmdb.org/t/p/w500${popular.poster_path}`}
@@ -36,12 +39,12 @@ export function OneCard({popular}) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
+                    <Button size="small"
+                            color="primary"
+                            href={`movie/${popular.id}`}
+                    >
+                        View trailer
+                    </Button>
             </CardActions>
         </Card>
     )
