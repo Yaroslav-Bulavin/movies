@@ -11,10 +11,15 @@ import Card from "@material-ui/core/Card";
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
+        backgroundColor: "#470c5c"
     },
     media: {
         height: 140,
     },
+    cardTitle: {
+        color: "#ffffff",
+        fontWeight: "600"
+    }
 });
 
 export function OneCard({popular}) {
@@ -33,7 +38,10 @@ export function OneCard({popular}) {
                     title={popular.title}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom
+                                variant="h5"
+                                component="h2"
+                                className={classes.cardTitle}>
                         {popular.title}
                     </Typography>
                 </CardContent>
