@@ -53,8 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export function Search() {
-    console.log(process.env);
-    console.log(process.env.REACT_APP_TMDB_KEY);
+
     const classes = useStyles();
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);

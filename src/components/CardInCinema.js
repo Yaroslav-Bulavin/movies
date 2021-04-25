@@ -1,11 +1,10 @@
-import React from "react";
-import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles({
@@ -14,42 +13,44 @@ const useStyles = makeStyles({
         backgroundColor: "#470c5c"
     },
     media: {
-        height: 140,
+        height: 210,
     },
     cardTitle: {
         color: "#ffffff",
-        fontWeight: "600"
+        fontWeight: "600",
+        textAlign: "center",
+        fontSize: 22
+    },
+    titleInner: {
+        padding: "16px 16px 0 16px"
     }
 });
 
-export const ResultCard = ({movie}) => {
+const CardInCinema = ({film}) => {
 
     const classes = useStyles();
+    console.log(film.id)
 
     return (
         <>
             <Card className={classes.root}>
-                <CardActionArea href={`movie/${movie.id}`}>
+                <CardActionArea href={`http://localhost:3000/movie/${film.id}`}>
                     <CardMedia
                         className={classes.media}
-                        image={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                        title={`${movie.title}`}
+                        image={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                        title={film.title}
                     />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2" className={classes.cardTitle}>
-                            {movie.title}
+                    <CardContent className={classes.titleInner}>
+                        <Typography gutterBottom
+                                    variant="h5"
+                                    component="h2"
+                                    className={classes.cardTitle}>
+                            {film.title}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        Share
-                    </Button>
-                    <Button size="small" color="primary">
-                        Learn More
-                    </Button>
-                </CardActions>
             </Card>
         </>
     )
-};
+}
+export default CardInCinema

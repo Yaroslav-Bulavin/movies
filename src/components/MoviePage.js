@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import YouTube from 'react-youtube';
 import {Header} from "./Header";
-import {Container, makeStyles, withMobileDialog} from "@material-ui/core";
+import {Container, makeStyles} from "@material-ui/core";
+import ShowsInCinema from "./ShowsInCinema";
 
 const useStyles = makeStyles({
     video: {
@@ -21,6 +22,10 @@ const useStyles = makeStyles({
     mr: {
         marginRight: "30px"
     },
+    titleInCinemas: {
+        fontSize: 30,
+        textAlign: "center"
+    }
 
 });
 
@@ -100,7 +105,10 @@ export function MoviePage(props) {
                             <span>{trailerInfo.budget}$</span>
                         </div>
                     </div>
-
+                </Container>
+                <Container maxWidth="md">
+                    <h2 className={classes.titleInCinemas}>Now in cinemas</h2>
+                    <ShowsInCinema/>
                 </Container>
 
         </>

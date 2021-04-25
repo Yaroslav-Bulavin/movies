@@ -25,9 +25,6 @@ const useStyles = makeStyles({
 export function OneCard({popular}) {
 
     const classes = useStyles();
-    // const handleFilmClick = async (id) => {
-    //
-    // };
 
     return (
         <Card className={classes.root}>
