@@ -1,28 +1,40 @@
-import {Header} from "./Header";
-import {Intro} from "./Intro";
-import {Search} from "./Search";
-import {Cards} from "./Cards";
-import {Login} from "./Login";
-import {Footer} from "./Footer";
-import React, {useState} from "react";
+import { Header } from "./Header";
+import { Intro } from "./Intro";
+import { Search } from "./Search";
+import { Cards } from "./Cards";
+import { Footer } from "./Footer";
+import React, { useState } from "react";
+import Login from "./Login";
+import { connect } from "react-redux";
+import { actionIsOpen } from "../redux/actions";
 
-export const Main = () => {
-
-  const [open, setOpen] = useState(false);
+const Main = ({ open, actionIsOpen }) => {
+  // const [open, setOpen] = useState(false);
 
   return (
-      <>
-          <Header changeStateOpen={() => setOpen(true)}/>
+    <>
+      <Header changeStateOpen={() => actionIsOpen(true)} />
 
-          <Intro/>
+      <Intro />
 
-          <Search/>
+      <Search />
 
-          <Cards/>
+      <Cards />
 
-          <Login open={open} changeStateOpen={() => setOpen(false)}/>
+      <Login open={open} changeStateOpen={() => actionIsOpen(false)} />
 
-          <Footer/>
-      </>
-  )
+      <Footer />
+    </>
+  );
 };
+
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    open: state.movies.open,
+  };
+};
+const mapDispatchToProps = {
+  actionIsOpen,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

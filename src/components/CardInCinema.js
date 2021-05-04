@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 const CardInCinema = ({film}) => {
 
     const classes = useStyles();
-    console.log(film.id)
 
     return (
         <>

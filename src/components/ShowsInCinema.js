@@ -20,7 +20,6 @@ const ShowsInCinema = () => {
             })
     }, []);
 
-    console.log(filmsInCinema)
     return (
         <>
             <Grid container spacing={1}>
