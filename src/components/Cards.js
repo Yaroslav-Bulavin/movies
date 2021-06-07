@@ -4,6 +4,8 @@ import React, {useState} from "react";
 import {OneCard} from "./Card";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import {actionShowPopular} from "../redux/actions";
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const useStyles = makeStyles({
@@ -16,24 +18,27 @@ const useStyles = makeStyles({
     }
 });
 
-
 export function Cards() {
 
     const classes = useStyles();
-    const [populars, setPopulars] = useState([]);
+    // const [populars, setPopulars] = useState([]);
+    const dispatch = useDispatch();
+    const populars = useSelector(state => state.movies.populars);
+    console.log(populars)
 
-    const showPopulars = () => {
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if(!data.errors) {
-                    setPopulars(data.results);
-                } else {
-                    setPopulars([]);
-                }
-            });
-    };
+    // const showPopulars = () => {
+    //     // fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`)
+    //     //     .then(res => res.json())
+    //     //     .then(data => {
+    //     //         console.log(data);
+    //     //         if(!data.errors) {
+    //     //             setPopulars(data.results);
+    //     //         } else {
+    //     //             setPopulars([]);
+    //     //         }
+    //     //     });
+    //     dispatch(actionShowPopular());
+    // };
 
 
     return (
@@ -42,7 +47,7 @@ export function Cards() {
                 <Typography variant="h4" align="center" className={classes.cardsTitle}>Popular films</Typography>
                 <Button variant="contained"
                         color="secondary"
-                        onClick={showPopulars}
+                        onClick={() => dispatch(actionShowPopular())}
                         className={classes.buttonShow}>
                     Show
                 </Button>
