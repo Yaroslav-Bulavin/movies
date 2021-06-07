@@ -15,7 +15,6 @@ const ShowsInCinema = () => {
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&region=UA`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setfilmsInCinema(data.results);
             })
     }, []);
@@ -27,13 +26,11 @@ const ShowsInCinema = () => {
                     spaceBetween={20}
                     slidesPerView={4}
                     navigation
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
                 >
-                {filmsInCinema.map(film => (
-                    <Grid key={film.id}>
+                {filmsInCinema.map((film, idx) => (
+                    <Grid>
                         <SwiperSlide>
-                            <CardInCinema film={film}/>
+                            <CardInCinema film={film} key={idx}/>
                         </SwiperSlide>
                     </Grid>
                 ))}

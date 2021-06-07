@@ -1,5 +1,5 @@
 import { Dialog } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 import FacebookLogin from "react-facebook-login";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -39,7 +39,6 @@ const Login = ({ open, changeStateOpen, login, actionLoggedIn }) => {
   const classes = useStyles();
 
   const responseFacebook = (response) => {
-    console.log(response);
     actionLoggedIn({
       isLoggedIn: true,
       userID: response.userID,
@@ -81,23 +80,18 @@ const Login = ({ open, changeStateOpen, login, actionLoggedIn }) => {
     );
   }
 
-  console.log(fbContent);
-  console.log(login);
-
   return (
     <Dialog
       open={open}
       onClose={changeStateOpen}
       aria-labelledby="form-dialog-title"
     >
-      {console.log(open)}
       <DialogContent className={classes.loginModal}>{fbContent}</DialogContent>
     </Dialog>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     login: state.movies.login,
   };

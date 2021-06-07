@@ -48,9 +48,9 @@ export function Cards() {
                 </Button>
                 {populars.length > 0 && (
                     <Grid container spacing={2}>
-                        {populars.map(popular => (
-                            <Grid item xs={12} sm={6} md={4} key={popular.id}>
-                                <OneCard popular={popular}/>
+                        {populars.map((popular, idx) => (
+                            <Grid item xs={12} sm={6} md={4} >
+                                <OneCard popular={popular} key={idx}/>
                             </Grid>
                         ))}
                     </Grid>

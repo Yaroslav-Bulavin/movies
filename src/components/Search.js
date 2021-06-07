@@ -65,7 +65,6 @@ export function Search() {
         fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${e.target.value}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if(!data.errors) {
                     setResults(data.results);
                 } else {
@@ -96,9 +95,9 @@ export function Search() {
                 </Grid>
                     {results.length > 0 && (
                         <Grid container spacing={2}>
-                            {results.map(movie => (
-                                <Grid item xs={12} sm={6} md={4} key={movie.id}>
-                                    <ResultCard movie={movie}/>
+                            {results.map((movie, idx) => (
+                                <Grid item xs={12} sm={6} md={4}>
+                                    <ResultCard movie={movie} key={idx}/>
                                 </Grid>
                             ))}
                         </Grid>

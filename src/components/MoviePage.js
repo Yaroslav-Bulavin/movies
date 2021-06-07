@@ -36,15 +36,11 @@ export function MoviePage(props) {
     const [trailerUrl, setTrailerUrl] = useState([]);
     const [trailerInfo, setTrailerInfo] = useState([]);
 
-    console.log(props.match.params.id);
-
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`)
             .then(res => res.json())
             .then(data => {
-                console.log(data.results);
                 setTrailerUrl(data.results);
-
             });
 
     }, [movieId]);
@@ -53,9 +49,7 @@ export function MoviePage(props) {
         fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setTrailerInfo(data);
-
             });
 
     }, [movieId]);
@@ -74,7 +68,12 @@ export function MoviePage(props) {
         <>
             <Header/>
                 <h1 className={classes.title}>{trailerInfo.title}</h1>
-                {trailerUrl.length !== 0 ? <YouTube opts = {opts} videoId = {trailerUrl[0].key} className={classes.video} /> : <h1>Loading...</h1>}
+                {trailerUrl.length !== 0
+                    ?
+                    <YouTube opts = {opts} videoId = {trailerUrl[0].key} className={classes.video} />
+                    :
+                    <h1>Loading...</h1>
+                }
                 <Container maxWidth="md" className={classes.flexBlocks}>
                     <div className={classes.mr}>
                         <img src={`https://image.tmdb.org/t/p/w200${trailerInfo.poster_path}`}
