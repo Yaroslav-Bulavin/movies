@@ -2,6 +2,8 @@ import {AppBar, Box, Button, Container, IconButton, Toolbar, Typography} from "@
 import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
+import {actionIncrement} from "../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
 export function Header({changeStateOpen}) {
     const classes = useStyles();
 
+    const count = useSelector(state => state.movies.count)
+    console.log(count)
+    const dispatch = useDispatch();
+
     return (
         <AppBar position="fixed">
             <Container fixed>
@@ -31,6 +37,10 @@ export function Header({changeStateOpen}) {
                         <Button color="inherit" variant="outlined" onClick={changeStateOpen}>Log in</Button>
                     </Box>
                 </Toolbar>
+                <div style={{display: "flex"}}>
+                    <p>{count}</p>
+                    <button onClick={() => dispatch(actionIncrement())}>increment</button>
+                </div>
             </Container>
         </AppBar>
     )
